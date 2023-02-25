@@ -5,6 +5,7 @@ const { isValidEmail, isValid, isValidMobile } = require("../Middlewares/InternV
 //============================>> Create Intern <<==============================>>>
 
 const createIntern = async function (req, res) {
+    res.setHeader('Access-Conrol-Allow-Origin', '*')
     try {
         let Data = req.body
         const { name, email, mobile, collegeName } = Data

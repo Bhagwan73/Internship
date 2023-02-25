@@ -3,8 +3,8 @@ const interModels = require("../Models/internModel")
 const { isValid } = require("../Middlewares/InternValidator")
 
 
-
 const createCollege = async (req, res) => {
+   res.setHeader('Access-Conrol-Allow-Origin', '*')
    try {
       const data = req.body
       const createdData = await collegeModels.create(data)
@@ -17,6 +17,7 @@ const createCollege = async (req, res) => {
 
 
 const getcollegedetails = async function (req, res) {
+   res.setHeader('Access-Conrol-Allow-Origin', '*')
    try {
       const collegename = req.query.collegeName
 
@@ -24,7 +25,7 @@ const getcollegedetails = async function (req, res) {
 
       const els = collegename.toLowerCase()
       if (collegename != els) {
-         return res.status(404).send({ status: false, satmsg: "it should be in lowercase " })
+         return res.status(400).send({ status: false, satmsg: "it should be in lowercase " })
       }
 
       const collegedetail = await collegeModels.findOne({ name: collegename })
